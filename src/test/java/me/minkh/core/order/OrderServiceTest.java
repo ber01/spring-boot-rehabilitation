@@ -1,17 +1,24 @@
 package me.minkh.core.order;
 
-import me.minkh.core.member.Grade;
-import me.minkh.core.member.Member;
-import me.minkh.core.member.MemberService;
-import me.minkh.core.member.MemberServiceImpl;
+import me.minkh.core.AppConfig;
+import me.minkh.core.discount.RateDiscountPolicy;
+import me.minkh.core.member.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OrderServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    MemberService memberService;
+    OrderService orderService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @Test
     void createOrder() {

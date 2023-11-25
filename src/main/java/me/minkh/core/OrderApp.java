@@ -1,9 +1,7 @@
 package me.minkh.core;
 
-import me.minkh.core.member.Grade;
-import me.minkh.core.member.Member;
-import me.minkh.core.member.MemberService;
-import me.minkh.core.member.MemberServiceImpl;
+import me.minkh.core.discount.RateDiscountPolicy;
+import me.minkh.core.member.*;
 import me.minkh.core.order.Order;
 import me.minkh.core.order.OrderService;
 import me.minkh.core.order.OrderServiceImpl;
@@ -11,8 +9,9 @@ import me.minkh.core.order.OrderServiceImpl;
 public class OrderApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);

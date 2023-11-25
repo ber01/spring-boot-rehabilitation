@@ -2,15 +2,20 @@ package me.minkh.core.order;
 
 import me.minkh.core.discount.DiscountPolicy;
 import me.minkh.core.discount.FixDiscountPolicy;
+import me.minkh.core.discount.RateDiscountPolicy;
 import me.minkh.core.member.Member;
 import me.minkh.core.member.MemberRepository;
 import me.minkh.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
