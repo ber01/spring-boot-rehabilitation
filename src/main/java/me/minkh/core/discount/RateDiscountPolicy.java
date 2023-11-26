@@ -2,7 +2,9 @@ package me.minkh.core.discount;
 
 import me.minkh.core.member.Grade;
 import me.minkh.core.member.Member;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountPercent = 10; // 10% 할인
