@@ -9,8 +9,8 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Autowired // ac.getBean(MemberRepository.class)
-    public MemberServiceImpl(MemberRepository memoryMemberRepository) {
-        this.memberRepository = memoryMemberRepository;
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Override
