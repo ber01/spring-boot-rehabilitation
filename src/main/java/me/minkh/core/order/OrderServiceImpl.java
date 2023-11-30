@@ -1,26 +1,21 @@
 package me.minkh.core.order;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import me.minkh.core.discount.DiscountPolicy;
-import me.minkh.core.discount.FixDiscountPolicy;
-import me.minkh.core.discount.RateDiscountPolicy;
 import me.minkh.core.member.Member;
 import me.minkh.core.member.MemberRepository;
-import me.minkh.core.member.MemoryMemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
+    // 테스트 용도
+    @Getter
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
-
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
-
+    
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
 
@@ -31,8 +26,4 @@ public class OrderServiceImpl implements OrderService {
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
 
-    // 테스트 용도
-    public MemberRepository getMemberRepository() {
-        return memberRepository;
-    }
 }
