@@ -3,7 +3,6 @@ package me.minkh.core.web;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import me.minkh.core.common.MyLogger;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger;
 
     @RequestMapping("log-demo")
     public String logDemo(HttpServletRequest request) {
         String requestUrl = request.getRequestURI();
 
-        MyLogger myLogger = myLoggerProvider.getObject();
+        System.out.println("myLogger = " + myLogger.getClass());
         myLogger.setRequestUrl(requestUrl);
 
         myLogger.log("Controller Test");
